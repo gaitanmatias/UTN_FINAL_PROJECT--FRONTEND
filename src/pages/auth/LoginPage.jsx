@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { loginUser } from "../../services/auth.service";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
+
   
   const [formData, setFormData] = useState({
     email: "",
@@ -32,6 +35,7 @@ export default function LoginPage() {
         password: "",
       });
 
+      login(response.token);
       navigate("/");
     } catch (err) {
       alert(err.message);
