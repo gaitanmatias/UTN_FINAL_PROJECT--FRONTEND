@@ -35,7 +35,7 @@ export default function LoginPage() {
         password: "",
       });
 
-      login(response.token);
+      await login(response.token);
       navigate("/");
     } catch (err) {
       alert(err.message);

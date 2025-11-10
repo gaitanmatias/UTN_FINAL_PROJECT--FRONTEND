@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 export default function NavBar() {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, logout, token } = useAuth();
 
   return (
     <nav className="navbar">
@@ -11,8 +11,15 @@ export default function NavBar() {
           <NavLink to="/" end>Inicio</NavLink>
         </li>
       </ul>
-      {isAuthenticated ? (
-        <button onClick={logout}>Cerrar Sesión</button>
+      {token && isAuthenticated && user ? (
+        <ul>
+          <li>
+            <NavLink to={`/profile/${user.id}`}>Perfil</NavLink>
+          </li>
+          <li>
+            <button onClick={logout}>Cerrar Sesión</button>
+          </li>
+        </ul>
       ) : (
         <ul className="navbar__auth-container">
           <li>

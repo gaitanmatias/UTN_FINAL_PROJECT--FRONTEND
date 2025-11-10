@@ -40,6 +40,7 @@ export const forgotPasswordUser = async (data) => {
     throw new Error(message);
   }
 };
+
 // -ResetPassword de usuario
 export const resetPasswordUser = async (reset_token, data) => {
   try {
@@ -48,6 +49,34 @@ export const resetPasswordUser = async (reset_token, data) => {
   } catch (error) {
     // Captura errores del backend y retorna el mensaje
     const message = error.response?.data?.message || "Error al restablecer contraseña";
+    throw new Error(message);
+  }
+};
+
+// Endpoints para verificación de cuenta
+// Enviar correo de verificación
+export const sendEmailVerification = async (token) => {
+  try {
+    const response = await axios.post(
+      "/send-email-verification",
+      {},
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    alert("Correo de verificación enviado. Revisa tu bandeja de entrada.");
+    return response.data;
+  } catch (error) {
+    const message = error.response?.data?.message || "Error al enviar correo de verificación";
+    throw new Error(message);
+  }
+};
+
+// Verificar cuenta con token
+export const verifyEmailConfirmation = async (verification_token) => {
+  try {
+    const response = await axios.get(`/verify-email/${verification_token}`);
+    return response.data;
+  } catch (error) {
+    const message = error.response?.data?.message || "Error al verificar la cuenta";
     throw new Error(message);
   }
 };
