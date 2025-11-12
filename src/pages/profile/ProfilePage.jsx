@@ -10,7 +10,7 @@ function ProfilePage() {
   useEffect(() => {
     if (!isAuthenticated) {
       alert("Debes iniciar sesión para acceder a tu perfil");
-      navigate("/login");
+      navigate("/auth/login");
     }
   }, [isAuthenticated, navigate]);
 

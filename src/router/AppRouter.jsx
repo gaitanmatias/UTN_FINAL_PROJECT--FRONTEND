@@ -10,6 +10,13 @@ import ProfileLayout from "../layouts/ProfileLayout";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 
+// Admin Pages
+import AdminDashboardPage from "../pages/admin/AdminDashboardPage";
+
+// Appointment Pages
+import AppointmentsPage from "../pages/appointments/AppointmentsPage";
+import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmentsPage";
+
 // Auth Pages
 import RegisterPage from "../pages/auth/RegisterPage";
 import LoginPage from "../pages/auth/LoginPage";
@@ -19,6 +26,7 @@ import VerifyEmailPage from "../pages/auth/VerifyEmailPage";
 
 // Profile Pages
 import ProfilePage from "../pages/profile/ProfilePage";
+import MyAppointmentsPage from "../pages/profile/MyAppointmentsPage";
 
 function AppRouter() {
   return (
@@ -26,6 +34,9 @@ function AppRouter() {
       {/* ----- Ruta Main ----- */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
+        <Route path="appointments" element={<AppointmentsPage />} />
+        <Route path="appointments/available/:date" element={<AvailableAppointmentsPage />} />
+        <Route path="admin-dashboard" element={<AdminDashboardPage />} />
       </Route>
 
       {/* ----- Ruta Auth ----- */}
@@ -40,6 +51,7 @@ function AppRouter() {
       {/* ----- Ruta Profile ----- */}
       <Route path="/profile" element={<ProfileLayout />}>
         <Route path=":userId" element={<ProfilePage />} />
+        <Route path=":userId/my-appointments" element={<MyAppointmentsPage />} />
       </Route>
 
       {/* ----- Ruta NotFound ----- */}

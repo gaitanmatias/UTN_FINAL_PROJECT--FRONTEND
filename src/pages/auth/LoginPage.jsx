@@ -2,6 +2,7 @@ import { useState } from "react";
 import { loginUser } from "../../services/auth.service";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -36,7 +37,11 @@ export default function LoginPage() {
       });
 
       await login(response.token);
-      navigate("/");
+      if (jwtDecode(response.token).isAdmin) {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       alert(err.message);
     }
