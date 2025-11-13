@@ -1,0 +1,149 @@
+/* ========================== NOTFOUND PAGE ========================== */
+
+.notfound-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+  width: 100%;
+	min-height: calc(100vh - 90px);
+	padding: 40px;
+  
+	background-color: var(--background);
+	color: var(--foreground);
+}
+
+.notfound-page__hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+
+	width: 100%;
+	max-width: 400px;
+
+	text-align: center;
+}
+
+.notfound-page__illustration {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--accent-foreground), var(--accent));
+	box-shadow: 0 8px 30px rgba(38,84,212,0.15);
+}
+
+.notfound-page__emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--background);
+
+  font-size: 4.5rem;
+}
+
+.notfound-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.notfound-page__title {
+	font-size: 2rem;
+	font-weight: 800;
+	letter-spacing: 0.5px;
+}
+
+.notfound-page__text {
+	font-size: 1.05rem;
+	max-width: 640px;
+	line-height: 1.6;
+	opacity: 0.9;
+}
+
+.notfound-page__actions {
+	display: flex;
+  align-items: center;
+  justify-content: center;
+	gap: 12px;
+	margin-top: 20px;
+}
+
+.notfound-page__button {
+  padding: 10px 20px;
+	border-radius: var(--radius);
+	font-weight: 700;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+	cursor: pointer;
+	border: none;
+}
+
+.notfound-page__button:hover {
+  background-color: var(--accent);
+  color: var(--primary-foreground);
+}
+
+.notfound-page__button--ghost {
+	background: transparent;
+	color: var(--foreground);
+	border: 2px solid var(--border);
+}
+
+.notfound-page__back {
+	margin-top: 18px;
+	background: transparent;
+	color: var(--secondary-foreground);
+	border: none;
+	cursor: pointer;
+	font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 768px) {
+	.notfound-page__hero {
+		flex-direction: row;
+		align-items: center;
+    justify-content: center;
+		text-align: left;
+		gap: 20px;
+    
+    max-width: none;
+  }
+
+    .notfound-page__title {
+		font-size: 2.5rem;
+	}
+
+  .notfound-page__actions, .notfound-page__back {
+    align-self: start;
+  }
+  
+}
+
+@media screen and (min-width: 1024px) {
+	.notfound-page {
+    padding: 80px 1.5%;
+	}
+  
+	.notfound-page__hero {
+    gap: 60px;
+  }
+  
+  .notfound-page__illustration {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Theme tweaks */
+@media (prefers-color-scheme: dark) {
+	.notfound-page__illustration {
+		box-shadow: 0 8px 30px rgba(64,153,255,0.12);
+	}
+}

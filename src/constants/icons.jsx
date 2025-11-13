@@ -1,6 +1,7 @@
 import { FiMenu, FiX } from "react-icons/fi";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { FiMapPin, FiMail, FiPhone } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 
 
 export const ICONS = {
@@ -11,4 +12,5 @@ export const ICONS = {
   email: <FiMail />,
   phone: <FiPhone />,
   location: <FiMapPin />,
+  search: <FiSearch />,
 };
