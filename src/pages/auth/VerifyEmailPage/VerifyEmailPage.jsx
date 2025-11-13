@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { verifyEmailConfirmation } from "../../services/auth.service.js";
+import { verifyEmailConfirmation } from "../../../services/auth.service.js";
+import "./VerifyEmailPage.css";
+import { ICONS } from "../../../constants/icons";
 
 function VerifyEmailPage() {
   const { token } = useParams();
@@ -34,12 +36,32 @@ function VerifyEmailPage() {
   if (isLoading) return <p>Verificando tu cuenta...</p>;
 
   return (
-    <div>
-      <h2>{isError ? "Error" : "Éxito"}</h2>
-      <p>{message}</p>
-      {isError && (
-        <button onClick={() => navigate("/profile")}>Volver a intentar</button>
-      )}
+    <div className="verify-email-page">
+      <div className="verify-email-page__container">
+        <div
+          className={`verify-email-page__status-icon ${
+            isError
+            ? "verify-email-page__status-icon--error"
+            : "verify-email-page__status-icon--success"
+          }`}
+        >
+          {isError ? ICONS.alertError : ICONS.checkSuccess}
+        </div>
+        <div className="verify-email-page__content">
+          <h2 className="verify-email-page__title">
+            {isError ? "Error al verificar" : "¡Correo verificado!"}
+          </h2>
+            <p className="verify-email-page__message">{message}</p>
+          {isError && (
+            <button
+              onClick={() => navigate("/profile")}
+              className="verify-email-page__button"
+            >
+              Volver a intentar
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
