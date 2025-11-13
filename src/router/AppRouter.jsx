@@ -21,7 +21,7 @@ import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmen
 // Auth Pages
 import RegisterPage from "../pages/auth/RegisterPage";
 import LoginPage from "../pages/auth/LoginPage/LoginPage";
-import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage";
+import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
 import VerifyEmailPage from "../pages/auth/VerifyEmailPage";
 
