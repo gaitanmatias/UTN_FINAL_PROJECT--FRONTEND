@@ -15,7 +15,7 @@ import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import AdminDashboardPage from "../pages/admin/AdminDashboardPage";
 
 // Appointment Pages
-import AppointmentsPage from "../pages/appointments/AppointmentsPage";
+import AppointmentsPage from "../pages/appointments/AppointmentsPage/AppointmentsPage";
 import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmentsPage";
 
 // Auth Pages
