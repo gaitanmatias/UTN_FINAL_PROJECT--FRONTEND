@@ -27,7 +27,7 @@ import VerifyEmailPage from "../pages/auth/VerifyEmailPage/VerifyEmailPage";
 
 // Profile Pages
 import ProfilePage from "../pages/profile/ProfilePage";
-import MyAppointmentsPage from "../pages/profile/MyAppointmentsPage";
+import MyAppointmentsPage from "../pages/profile/MyAppointmentsPage/MyAppointmentsPage";
 
 function AppRouter() {
   // Hook que hace scroll al top al cambiar de ruta
