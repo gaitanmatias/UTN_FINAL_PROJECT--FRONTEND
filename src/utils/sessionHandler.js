@@ -1,7 +1,7 @@
 export const handleExpiredSession = (err) => {
   if (err?.response?.status === 401 || 
       err?.response?.data?.message?.toLowerCase().includes("token")) {
-    localStorage.clear();
+    localStorage.removeItem("token");
     window.location.href = "/auth/login";
     return true;
   }
