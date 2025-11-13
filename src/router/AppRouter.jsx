@@ -22,7 +22,7 @@ import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmen
 import RegisterPage from "../pages/auth/RegisterPage";
 import LoginPage from "../pages/auth/LoginPage/LoginPage";
 import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage/ForgotPasswordPage";
-import ResetPasswordPage from "../pages/auth/ResetPasswordPage";
+import ResetPasswordPage from "../pages/auth/ResetPasswordPage/ResetPasswordPage";
 import VerifyEmailPage from "../pages/auth/VerifyEmailPage";
 
 // Profile Pages
