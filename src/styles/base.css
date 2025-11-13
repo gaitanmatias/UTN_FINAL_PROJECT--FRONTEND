@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+
+/* ========================= */
+/* Variables principales     */
+/* ========================= */
+
+/* =============== Fuentes =============== */
+:root {
+  /* Fonts */
+  --font-heading: 'Montserrat', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-body: 'Roboto Slab', Georgia, serif;
+}
+
+/* =============== Tema claro =============== */
+:root[data-theme="light"] {
+  /* Base */
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+
+  /* Superficies */
+  --card: #fafafa;
+  --card-foreground: #1a1a1a;
+
+  /* Colores principales */
+  --primary: #171717;
+  --primary-foreground: #fafafa;
+
+  /* Colores secundarios y acento */
+  --secondary: #c4c4c4;
+  --secondary-foreground: #414141;
+  --accent: #2654d4;
+  --accent-foreground: #4099ff;
+
+  /* Estados */
+  --destructive: #e7000b;
+  --destructive-foreground: #fafafa;
+
+  /* Bordes y contornos */
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #a1a1a1;
+
+  /* Radius */
+  --radius: 0.625rem;
+}
+
+/* =============== Tema oscuro =============== */
+
+:root[data-theme="dark"] {
+  /* Base */
+  --background: #202020;
+  --foreground: #fafafa;
+
+  /* Superficies */
+  --card: #171717;
+  --card-foreground: #fafafa;
+
+  /* Colores principales */
+  --primary: #fafafa;
+  --primary-foreground: #171717;
+
+  /* Colores secundarios y acento */
+  --secondary: #414141;
+  --secondary-foreground: #c4c4c4;
+  --accent: #4099ff;
+  --accent-foreground: #2654d4;
+
+  /* Estados */
+  --destructive: #ff6467;
+  --destructive-foreground: #fafafa;
+
+  /* Bordes y contornos */
+  --border: #282828;
+  --input: #343434;
+  --ring: #636363;
+
+
+  /* Radius */
+  --radius: 0.625rem;
+}
+
+/* ========================= */
+/* Estilos globales          */
+/* ========================= */
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.btn {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+
+/* =============== Resets básicos =============== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---------- Mobile view ---------- */
+main {
+  margin-top: 75px;
+}
+
+/* ---------- Desktop view ---------- */
+@media screen and (min-width: 1024px) {
+  main {
+    margin-top: 90px;
+  }
+}
