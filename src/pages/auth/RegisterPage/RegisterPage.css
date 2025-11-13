@@ -1,0 +1,285 @@
+/* ========================== FORGOT PASSWORD PAGE ========================== */
+
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: calc(100vh - 75px);
+  padding: 20px;
+
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.register-page__container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  padding: 40px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== HEADER ===== */
+
+.register-page__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  text-align: center;
+}
+
+.register-page__title {
+  font-size: 2em;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: var(--foreground);
+}
+
+.register-page__subtitle {
+  font-size: 0.95em;
+  line-height: 1.6;
+  opacity: 0.8;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===== FORMULARIO ===== */
+
+.register-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register-page__form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.register-page__label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 0.95em;
+  color: var(--foreground);
+}
+
+.register-page__input {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+
+  font-size: 1em;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.register-page__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(38, 84, 212, 0.1);
+}
+
+.register-page__input::placeholder {
+  color: var(--secondary-foreground);
+  opacity: 0.6;
+}
+
+.register-page__button {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  border: none;
+
+  font-size: 1.05em;
+  font-weight: 700;
+  cursor: pointer;
+
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.register-page__button:hover:not(:disabled) {
+  background-color: var(--accent);
+  color: var(--light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.register-page__button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.register-page__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== DIVISOR ===== */
+
+.register-page__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 0.9em;
+  color: var(--secondary-foreground);
+  opacity: 0.5;
+
+  margin: 8px 0;
+}
+
+.register-page__divider::before,
+.register-page__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--border);
+}
+
+/* ===== LINKS ===== */
+
+.register-page__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.register-page__link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.register-page__link:hover {
+  color: var(--accent-foreground);
+  border-bottom-color: var(--accent);
+}
+
+.register-page__link--forgot {
+  font-size: 0.9em;
+}
+
+.register-page__link--highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.register-page__footer-text {
+  font-size: 0.9em;
+  color: var(--foreground);
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+/* ===== TABLET (768px - 1023px) ===== */
+@media screen and (min-width: 768px) {
+  .register-page {
+    min-height: calc(100vh - 90px);
+    padding: 60px 40px;
+  }
+
+  .register-page__container {
+    gap: 50px;
+    padding: 50px;
+  }
+
+  .register-page__header {
+    text-align: left;
+  }
+
+  .register-page__title {
+    font-size: 2.2em;
+  }
+}
+
+/* ===== DESKTOP (1024px en adelante) ===== */
+@media screen and (min-width: 1024px) {
+  .register-page {
+    min-height: calc(100vh - 90px);
+    padding: 80px 1.5%;
+  }
+
+  .register-page__wrapper {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1200px;
+  }
+
+  .register-page__container {
+    padding: 60px;
+  }
+
+  .register-page__title {
+    font-size: 2.5em;
+  }
+
+  .register-page__subtitle {
+    font-size: 1em;
+  }
+
+  .register-page__form-group {
+    gap: 10px;
+  }
+
+  .register-page__input {
+    padding: 14px 16px;
+    font-size: 1.05em;
+  }
+
+  .register-page__button {
+    padding: 14px 18px;
+    font-size: 1.1em;
+  }
+}
+
+/* ===== ANIMACIONES ===== */
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== TEMA CLARO ===== */
+@media (prefers-color-scheme: light) {
+  .login-page__container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .login-page__input:focus {
+    box-shadow: 0 0 0 3px rgba(38, 84, 212, 0.1);
+  }
+}
+
+/* ===== TEMA OSCURO ===== */
+@media (prefers-color-scheme: dark) {
+  .login-page__container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .login-page__input:focus {
+    box-shadow: 0 0 0 3px rgba(64, 153, 255, 0.15);
+  }
+}

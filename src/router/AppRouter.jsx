@@ -19,7 +19,7 @@ import AppointmentsPage from "../pages/appointments/AppointmentsPage";
 import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmentsPage";
 
 // Auth Pages
-import RegisterPage from "../pages/auth/RegisterPage";
+import RegisterPage from "../pages/auth/RegisterPage/RegisterPage";
 import LoginPage from "../pages/auth/LoginPage/LoginPage";
 import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage/ForgotPasswordPage";
 import ResetPasswordPage from "../pages/auth/ResetPasswordPage/ResetPasswordPage";
