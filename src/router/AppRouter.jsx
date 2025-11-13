@@ -7,7 +7,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import ProfileLayout from "../layouts/ProfileLayout"; 
 
 // General Pages
-import HomePage from "../pages/HomePage";
+import HomePage from "../pages/HomePage/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 // Admin Pages
