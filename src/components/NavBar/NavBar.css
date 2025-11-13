@@ -115,7 +115,8 @@
   padding: 10px;
 
   font-size: 1.15em;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 1px;
   background-color: var(--primary);
   color: var(--primary-foreground);
   
@@ -131,7 +132,7 @@
 .navbar__link--active {
   background-color: transparent;
   color: var(--primary);
-  border-bottom: 5px solid var(--accent-foreground);
+  border-bottom: 5px solid var(--accent);
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
@@ -161,7 +162,7 @@
   background-color: var(--foreground);
 
 
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.15em;
   color: var(--primary-foreground);
 }
@@ -172,12 +173,12 @@
 }
 
 .navbar__button--verify {
-  background-color: var(--accent-foreground);
-  color: var(--primary);
+  background-color: var(--accent);
+  color: var(--primary-foreground);
 }
 
 .navbar__button--verify:hover {
-  background-color: var(--accent);
+  background-color: var(--accent-foreground);
   color: var(--primary-foreground);
 }
 
@@ -195,7 +196,6 @@
     padding: 0 1.5%;
 
     font-size: 1rem;
-
   }
 
   .navbar__brand {
@@ -267,8 +267,8 @@
   }
 
   .navbar__button--verify {
-    background-color: var(--accent-foreground);
-    color: var(--primary);
+    background-color: var(--accent);
+    color: var(--primary-foreground);
   }
 
   .navbar__links .navbar__theme-toggle-btn {

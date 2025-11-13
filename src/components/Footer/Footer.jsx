@@ -59,7 +59,7 @@ function Footer() {
       <div className="footer__bottom">
         <p className="footer__copy">
           Proyecto desarrollado por 
-          <NavLink to="https://github.com/gaitanmatias" target="_blank" className="footer__link"> Matías Gaitán </NavLink> 
+          <NavLink to="https://github.com/gaitanmatias" target="_blank" className="footer__link">Matías Gaitán</NavLink> 
           para el curso de <strong>Programación Web Full-Stack</strong> de <strong>UTN</strong>.
         </p>
         <small className="footer__copy">
