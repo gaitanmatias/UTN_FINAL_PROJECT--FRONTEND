@@ -16,7 +16,7 @@ import AdminDashboardPage from "../pages/admin/AdminDashboardPage";
 
 // Appointment Pages
 import AppointmentsPage from "../pages/appointments/AppointmentsPage/AppointmentsPage";
-import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmentsPage";
+import AvailableAppointmentsPage from "../pages/appointments/AvailableAppointmentsPage/AvailableAppointmentsPage";
 
 // Auth Pages
 import RegisterPage from "../pages/auth/RegisterPage/RegisterPage";
