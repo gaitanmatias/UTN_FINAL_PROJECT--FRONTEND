@@ -16,6 +16,7 @@ function AppointmentsPage() {
     if (!token) {
       alert("Debes iniciar sesión antes de continuar.");
       navigate("/auth/login");
+      return;
     }
     if (!fecha) {
       alert("Por favor, seleccioná una fecha antes de continuar.");
