@@ -34,6 +34,8 @@
   /* Estados */
   --destructive: #dd2c35;
   --destructive-foreground: #ff8a8a;
+  --success: #419e3c;
+  --success-foreground: #9ddd9a;
 
   /* Bordes y contornos */
   --border: #e5e5e5;
@@ -73,6 +75,8 @@
   /* Estados */
   --destructive: #ff4f51;
   --destructive-foreground: #fcd2d2;
+  --success: #9ddd9a;
+  --success-foreground: #419e3c;
 
   /* Bordes y contornos */
   --border: #282828;
