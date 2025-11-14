@@ -2,15 +2,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICONS } from "../../../constants/icons";
 import "./AppointmentsPage.css";
+import { useAuth } from "../../../hooks/useAuth";
 
 function AppointmentsPage() {
   const [fecha, setFecha] = useState("");
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const todayDate = new Date().toISOString().split("T")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!token) {
+      alert("Debes iniciar sesión antes de continuar.");
+      navigate("/auth/login");
+    }
     if (!fecha) {
       alert("Por favor, seleccioná una fecha antes de continuar.");
       return;

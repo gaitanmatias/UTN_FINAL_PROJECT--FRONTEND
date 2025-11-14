@@ -30,7 +30,7 @@ export default function RegisterPage() {
       alert("Las contraseñas no coinciden");
       return;
     }
-    if (formData.password.length <= 8) {
+    if (formData.password.length < 8) {
       alert("La contraseña debe tener al menos 8 caracteres");
       return;
     }
