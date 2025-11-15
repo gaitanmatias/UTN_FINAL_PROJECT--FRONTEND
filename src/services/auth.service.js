@@ -1,14 +1,11 @@
 import axios from "axios";
-
-// Base URL opcional si querés configurarlo
-const API_AUTH_URI = `${import.meta.env.VITE_BACKEND_URI}/api/auth`;
-
+import { API } from "../constants/apiRoutes";
 
 // =============== AUTENTICACIÓN ===============
 // -Registro de usuario
 export const registerUser = async (data) => {
   try {
-    const response = await axios.post(`${API_AUTH_URI}/register`, data);
+    const response = await axios.post(`${API.AUTH}/register`, data);
     return response.data;
   } catch (error) {
     // Captura errores del backend y retorna el mensaje
@@ -20,7 +17,7 @@ export const registerUser = async (data) => {
 // -Login de usuario
 export const loginUser = async (data) => {
   try {
-    const response = await axios.post(`${API_AUTH_URI}/login`, data);
+    const response = await axios.post(`${API.AUTH}/login`, data);
     return response.data;
   } catch (error) {
     // Captura errores del backend y retorna el mensaje
@@ -33,7 +30,7 @@ export const loginUser = async (data) => {
 // -ForgotPassword de usuario
 export const forgotPasswordUser = async (data) => {
   try {
-    const response = await axios.post(`${API_AUTH_URI}/forgot-password`, data);
+    const response = await axios.post(`${API.AUTH}/forgot-password`, data);
     return response.data;
   } catch (error) {
     // Captura errores del backend y retorna el mensaje
@@ -45,7 +42,7 @@ export const forgotPasswordUser = async (data) => {
 // -ResetPassword de usuario
 export const resetPasswordUser = async (reset_token, data) => {
   try {
-    const response = await axios.post(`${API_AUTH_URI}/reset-password/${reset_token}`, data);
+    const response = await axios.post(`${API.AUTH}/reset-password/${reset_token}`, data);
     return response.data;
   } catch (error) {
     // Captura errores del backend y retorna el mensaje
@@ -59,7 +56,7 @@ export const resetPasswordUser = async (reset_token, data) => {
 export const sendEmailVerification = async (token) => {
   try {
     const response = await axios.post(
-      `${API_AUTH_URI}/send-email-verification`,
+      `${API.AUTH}/send-email-verification`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -74,7 +71,7 @@ export const sendEmailVerification = async (token) => {
 // Verificar cuenta con token
 export const verifyEmailConfirmation = async (verification_token) => {
   try {
-    const response = await axios.get(`${API_AUTH_URI}/verify-email/${verification_token}`);
+    const response = await axios.get(`${API.AUTH}/verify-email/${verification_token}`);
     return response.data;
   } catch (error) {
     const message = error.response?.data?.message || "Error al verificar la cuenta";
