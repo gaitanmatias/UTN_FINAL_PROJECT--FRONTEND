@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ICONS } from "../../../constants/icons";
 import "./AppointmentsPage.css";
 import { useAuth } from "../../../hooks/useAuth";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function AppointmentsPage() {
+  usePageTitle("Bookly | Consulta disponibilidad de turnos");
   const [fecha, setFecha] = useState("");
   const navigate = useNavigate();
   const { token } = useAuth();

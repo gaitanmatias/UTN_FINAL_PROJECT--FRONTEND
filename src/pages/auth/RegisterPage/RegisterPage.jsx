@@ -3,8 +3,10 @@ import { registerUser } from "../../../services/auth.service";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ICONS } from "../../../constants/icons";
 import "./RegisterPage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function RegisterPage() {
+  usePageTitle("Bookly | Registro");
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({

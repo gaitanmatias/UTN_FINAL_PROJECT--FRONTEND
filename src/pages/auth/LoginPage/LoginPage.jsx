@@ -5,8 +5,10 @@ import { useAuth } from "../../../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
 import { ICONS } from "../../../constants/icons";
 import "./LoginPage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function LoginPage() {
+  usePageTitle("Bookly | Iniciar sesión");
   const navigate = useNavigate();
   const { login } = useAuth();
 

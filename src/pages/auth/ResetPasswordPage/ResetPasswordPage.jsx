@@ -3,8 +3,10 @@ import { resetPasswordUser } from "../../../services/auth.service";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { ICONS } from "../../../constants/icons";
 import "./ResetPasswordPage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function ResetPasswordPage() {
+  usePageTitle("Bookly | Restablecer contraseña");
   const navigate = useNavigate();
   const { token } = useParams();
   

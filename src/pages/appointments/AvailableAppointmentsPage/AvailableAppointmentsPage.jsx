@@ -4,8 +4,10 @@ import { getAppointmentsByDate, createAppointment } from "../../../services/appo
 import { useAuth } from "../../../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
 import "./AvailableAppointmentsPage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function AvailableAppointmentsPage() {
+  usePageTitle("Bookly | Reserva tu proximo turno");
   const { date } = useParams();
   const navigate = useNavigate();
   const { user, token } = useAuth();

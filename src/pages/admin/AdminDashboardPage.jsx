@@ -3,8 +3,10 @@ import { getAppointmentsByDate, updateAppointment } from "../../services/appoint
 import { useAuth } from "../../hooks/useAuth";
 import { ICONS } from "../../constants/icons";
 import "./AdminDashboardPage.css";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function AdminDashboardPage() {
+  usePageTitle("Bookly | Dashboard de Administrador");
   const { token } = useAuth();
   const [turnos, setTurnos] = useState([]);
   const [cargando, setCargando] = useState(true);

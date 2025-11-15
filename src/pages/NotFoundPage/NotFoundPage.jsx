@@ -2,8 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ICONS } from "../../constants/icons";
 import './NotFoundPage.css';
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function NotFoundPage() {
+  usePageTitle("Bookly | 404 - Página no encontrada");
   const navigate = useNavigate();
 
   return (
