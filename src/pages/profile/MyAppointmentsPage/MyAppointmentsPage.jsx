@@ -7,6 +7,7 @@ import "./MyAppointmentsPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function MyAppointmentsPage() {
+  usePageTitle(`Bookly | ${user.name} - Mis turnos`);
   const navigate = useNavigate();
   const { token } = useAuth();
   const [turnos, setTurnos] = useState([]);

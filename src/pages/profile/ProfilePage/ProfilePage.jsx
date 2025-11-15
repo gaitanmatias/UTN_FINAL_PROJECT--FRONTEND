@@ -7,6 +7,7 @@ import "./ProfilePage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function ProfilePage() {
+  usePageTitle(`Bookly | ${user.name} - Perfil`);
   const { user, isAuthenticated, token } = useAuth();
   usePageTitle(`Bookly | ${user.firstName} - Perfil`);
   const navigate = useNavigate();
