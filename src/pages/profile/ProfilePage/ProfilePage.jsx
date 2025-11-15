@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { sendEmailVerification } from "../../../services/auth.service.js";
 import { ICONS } from "../../../constants/icons";
 import "./ProfilePage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function ProfilePage() {
+  usePageTitle(`Bookly | ${user.name} - Perfil`);
   const { user, isAuthenticated, token } = useAuth();
   const navigate = useNavigate();
 
