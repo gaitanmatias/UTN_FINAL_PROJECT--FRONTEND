@@ -3,8 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { verifyEmailConfirmation } from "../../../services/auth.service.js";
 import "./VerifyEmailPage.css";
 import { ICONS } from "../../../constants/icons";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function VerifyEmailPage() {
+  usePageTitle("Bookly | Verificación de cuenta");
   const { token } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");

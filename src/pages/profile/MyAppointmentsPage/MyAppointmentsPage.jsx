@@ -4,6 +4,7 @@ import { getUserAppointments, updateAppointment } from "../../../services/appoin
 import { useAuth } from "../../../hooks/useAuth";
 import { ICONS } from "../../../constants/icons";
 import "./MyAppointmentsPage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function MyAppointmentsPage() {
   const navigate = useNavigate();
@@ -12,6 +13,9 @@ function MyAppointmentsPage() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
 
+  const { user } = useAuth();
+  usePageTitle(`Bookly | ${user.firstName} - Mis turnos`);
+  
   useEffect(() => {
     const cargarTurnos = async () => {
       try {

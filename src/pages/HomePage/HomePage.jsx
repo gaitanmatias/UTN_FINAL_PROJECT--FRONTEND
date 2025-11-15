@@ -1,8 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./HomePage.css";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 function HomePage() {
+  usePageTitle("Bookly | Inicio");
   return (
     <div className="home-page">
       <section className="home-page__intro">

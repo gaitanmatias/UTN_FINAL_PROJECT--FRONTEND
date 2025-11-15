@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { sendEmailVerification } from "../../../services/auth.service.js";
 import { ICONS } from "../../../constants/icons";
 import "./ProfilePage.css";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 function ProfilePage() {
   const { user, isAuthenticated, token } = useAuth();
+  usePageTitle(`Bookly | ${user.firstName} - Perfil`);
   const navigate = useNavigate();
 
   // Si no está autenticado → redirigir

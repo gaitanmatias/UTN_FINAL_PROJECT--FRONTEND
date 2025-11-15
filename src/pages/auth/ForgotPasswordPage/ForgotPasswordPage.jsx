@@ -3,8 +3,10 @@ import { forgotPasswordUser } from "../../../services/auth.service";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./ForgotPasswordPage.css";
 import { ICONS } from "../../../constants/icons";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function ForgotPasswordPage() {
+  usePageTitle("Bookly | Olvidé mi contraseña");
   const navigate = useNavigate();
   
   const [loading, setLoading] = useState(false);
