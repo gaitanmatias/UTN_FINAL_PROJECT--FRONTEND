@@ -1,13 +1,12 @@
 import axios from "axios";
 import { handleExpiredSession } from "../utils/sessionHandler";
-
-const API_APPPOINTMENTS_URI = `${import.meta.env.VITE_BACKEND_URI}/api/appointments`;
+import { API } from "../constants/apiRoutes";
 
 // =============== OBTENER TURNOS ===============
 // -Obtener turnos por fecha
 export const getAppointmentsByDate = async (date, token) => {
   try {
-    const res = await axios.get(`${API_APPPOINTMENTS_URI}/date?date=${date}`, {
+    const res = await axios.get(`${API.APPOINTMENTS}/date?date=${date}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
@@ -22,7 +21,7 @@ export const getAppointmentsByDate = async (date, token) => {
 // -Obtener turnos del usuario autenticado 
 export const getUserAppointments = async (token) => {
   try {
-    const res = await axios.get(`${API_APPPOINTMENTS_URI}/`, {
+    const res = await axios.get(`${API.APPOINTMENTS}/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
@@ -39,7 +38,7 @@ export const getUserAppointments = async (token) => {
 export const createAppointment = async (date, time, token) => {
   try {
     const res = await axios.post(
-      `${API_APPPOINTMENTS_URI}/`,
+      `${API.APPOINTMENTS}/`,
       { date, time },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -59,7 +58,7 @@ export const createAppointment = async (date, time, token) => {
 export const updateAppointment = async (appointmentId, status, token) => {
   try {
     const res = await axios.put(
-      `${API_APPPOINTMENTS_URI}/${appointmentId}`,
+      `${API.APPOINTMENTS}/${appointmentId}`,
       { status },
       { headers: { Authorization: `Bearer ${token}` } }
     );
