@@ -26,7 +26,7 @@ import ResetPasswordPage from "../pages/auth/ResetPasswordPage/ResetPasswordPage
 import VerifyEmailPage from "../pages/auth/VerifyEmailPage/VerifyEmailPage";
 
 // Profile Pages
-import ProfilePage from "../pages/profile/ProfilePage";
+import ProfilePage from "../pages/profile/ProfilePage/ProfilePage";
 import MyAppointmentsPage from "../pages/profile/MyAppointmentsPage/MyAppointmentsPage";
 
 function AppRouter() {
