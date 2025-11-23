@@ -23,16 +23,18 @@ function AvailableAppointmentsPage() {
         if (res?.data?.scheduled && res?.data?.userCanceled) {
           setTurnos(res.data);
         } else if (Array.isArray(res?.data)) {
-          console.log(res.data);
-          console.log("turno.userId._id", res.data[0].userId._id)
-          console.log("user.id", user.id)
-          let scheduled = res.data.filter((turno) => turno.status === "scheduled");
-          let userCanceled = res.data.filter((turno) => turno.status === "canceled" && turno.userId._id === user.id);
-          console.log("sched: ", scheduled);
-          console.log("usercan: ",userCanceled);
-          setTurnos({ scheduled: scheduled, userCanceled: userCanceled });
-        } else {
-          setTurnos({ scheduled: [], userCanceled: [] });
+            const dataArray = res.data || [];
+          // Si no hay elementos devolvemos array vacío (caso admin sin turnos)
+          if (dataArray.length === 0) {
+            setTurnos({ scheduled: [], userCanceled: [] });
+          } else {
+            // normalizamos id del usuario local para evitar confusiones entre user.id y user.user._id
+            const localUserId = user?.user?._id || user?.id || user?._id;
+
+            const scheduled = dataArray.filter((turno) => turno.status === "scheduled");
+            const userCanceled = dataArray.filter((turno) => turno.status === "canceled" && ((turno.userId && (turno.userId._id || turno.userId.toString())) === localUserId?.toString()));
+            setTurnos({ scheduled, userCanceled });
+          }
         }
       } catch (err) {
         setError(err.message);
