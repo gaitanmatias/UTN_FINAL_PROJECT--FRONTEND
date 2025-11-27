@@ -4,10 +4,12 @@ import { verifyEmailConfirmation } from "../../../services/auth.service.js";
 import "./VerifyEmailPage.css";
 import { ICONS } from "../../../constants/icons";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useAuth } from "../../../hooks/useAuth";
 
 function VerifyEmailPage() {
   usePageTitle("Bookly | Verificación de cuenta");
   const { token } = useParams();
+  const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
@@ -20,6 +22,7 @@ function VerifyEmailPage() {
         if (response.ok) {
           setIsError(false);
           setMessage(response.message || "Tu cuenta fue verificada exitosamente ✅");
+          await login(response.token);
         } else {
           setIsError(true);
           setMessage(response.message || "No se pudo verificar tu cuenta.");
