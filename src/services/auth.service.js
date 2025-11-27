@@ -60,7 +60,6 @@ export const sendEmailVerification = async (token) => {
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
-    alert("Correo de verificación enviado. Revisa tu bandeja de entrada.");
     return response.data;
   } catch (error) {
     const message = error.response?.data?.message || "Error al enviar correo de verificación";

@@ -24,7 +24,7 @@ function ProfilePage() {
   const handleSendVerification = async () => {
     try {
       await sendEmailVerification(token);
-      alert("Correo de verificación enviado.");
+      alert("Correo de verificación enviado. Revisa tu bandeja de entrada.");
     } catch (error) {
       alert("Ocurrió un error al enviar la verificación.");
       console.error(error);
