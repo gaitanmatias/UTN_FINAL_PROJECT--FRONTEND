@@ -1,9 +1,15 @@
-import React from 'react'
+// react
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+
+// contextos
 import { AuthProvider } from './context/AuthContext.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
 import { UIProvider } from './context/UIContext.jsx'
+
+// componentes
+import App from './App.jsx'
+
+// estilos
 import './styles/base.css'
 
 

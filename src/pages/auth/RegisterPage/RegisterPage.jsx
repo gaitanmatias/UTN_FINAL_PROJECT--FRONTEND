@@ -1,10 +1,23 @@
+// react
 import { useState } from "react";
-import { registerUser } from "../../../services/auth.service";
+
+// dependencias externas
 import { NavLink, useNavigate } from "react-router-dom";
-import { ICONS } from "../../../constants/icons";
-import "./RegisterPage.css";
+
+// hooks
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { registerUser } from "../../../services/auth.service";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./RegisterPage.css";
 
 export default function RegisterPage() {
   usePageTitle("Bookly | Registro");

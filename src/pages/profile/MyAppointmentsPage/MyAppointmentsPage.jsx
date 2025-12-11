@@ -1,11 +1,24 @@
+// react
 import { useEffect, useState } from "react";
+
+// dependencias externas
 import { useNavigate } from "react-router-dom";
-import { getUserAppointments, updateAppointment } from "../../../services/appointment.service";
+
+// hooks
 import { useAuth } from "../../../hooks/useAuth";
-import { ICONS } from "../../../constants/icons";
-import "./MyAppointmentsPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { getUserAppointments, updateAppointment } from "../../../services/appointment.service";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./MyAppointmentsPage.css";
 
 function MyAppointmentsPage() {
   const navigate = useNavigate();

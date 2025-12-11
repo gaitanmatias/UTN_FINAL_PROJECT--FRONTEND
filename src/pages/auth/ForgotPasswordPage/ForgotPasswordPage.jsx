@@ -1,10 +1,23 @@
+// react
 import { useState } from "react";
-import { forgotPasswordUser } from "../../../services/auth.service";
+
+// dependencias externas
 import { NavLink, useNavigate } from "react-router-dom";
-import "./ForgotPasswordPage.css";
-import { ICONS } from "../../../constants/icons";
+
+// hooks
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { forgotPasswordUser } from "../../../services/auth.service";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./ForgotPasswordPage.css";
 
 export default function ForgotPasswordPage() {
   usePageTitle("Bookly | Olvidé mi contraseña");

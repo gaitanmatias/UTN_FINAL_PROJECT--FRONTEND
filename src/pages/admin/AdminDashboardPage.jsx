@@ -1,10 +1,21 @@
+// react
 import { useEffect, useState } from "react";
-import { getAppointmentsByDate, updateAppointment } from "../../services/appointment.service";
+
+// hooks
 import { useAuth } from "../../hooks/useAuth";
-import { ICONS } from "../../constants/icons";
-import "./AdminDashboardPage.css";
 import { usePageTitle } from "../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../context/UIContext";
+
+// servicios
+import { getAppointmentsByDate, updateAppointment } from "../../services/appointment.service";
+
+// constantes
+import { ICONS } from "../../constants/icons";
+
+// estilos
+import "./AdminDashboardPage.css";
 
 export default function AdminDashboardPage() {
   usePageTitle("Bookly | Dashboard de Administrador");

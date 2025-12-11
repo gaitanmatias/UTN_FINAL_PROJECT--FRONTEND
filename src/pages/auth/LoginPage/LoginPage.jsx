@@ -1,12 +1,25 @@
+// react
 import { useState } from "react";
-import { loginUser } from "../../../services/auth.service";
+
+// dependencias externas
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
-import { ICONS } from "../../../constants/icons";
-import "./LoginPage.css";
+
+// hooks
+import { useAuth } from "../../../hooks/useAuth";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { loginUser } from "../../../services/auth.service";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./LoginPage.css";
 
 export default function LoginPage() {
   usePageTitle("Bookly | Iniciar sesión");

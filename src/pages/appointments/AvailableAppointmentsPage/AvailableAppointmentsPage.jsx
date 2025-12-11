@@ -1,11 +1,22 @@
+// react
 import { useEffect, useState } from "react";
+
+// dependencias externas
 import { useParams, useNavigate } from "react-router-dom";
-import { getAppointmentsByDate, createAppointment } from "../../../services/appointment.service";
-import { useAuth } from "../../../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
-import "./AvailableAppointmentsPage.css";
+
+// hooks
+import { useAuth } from "../../../hooks/useAuth";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { getAppointmentsByDate, createAppointment } from "../../../services/appointment.service";
+
+// estilos
+import "./AvailableAppointmentsPage.css";
 
 function AvailableAppointmentsPage() {
   usePageTitle("Bookly | Reserva tu proximo turno");
@@ -26,11 +37,10 @@ function AvailableAppointmentsPage() {
           setTurnos(res.data);
         } else if (Array.isArray(res?.data)) {
             const dataArray = res.data || [];
-          // Si no hay elementos devolvemos array vacío (caso admin sin turnos)
+          // Si no hay elementos retorna array vacío (caso admin sin turnos)
           if (dataArray.length === 0) {
             setTurnos({ scheduled: [], userCanceled: [] });
           } else {
-            // normalizamos id del usuario local para evitar confusiones entre user.id y user.user._id
             const localUserId = user?.user?._id || user?.id || user?._id;
 
             const scheduled = dataArray.filter((turno) => turno.status === "scheduled");

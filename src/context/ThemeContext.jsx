@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Función para alternar
+  // Función para alternar tema
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
@@ -26,5 +26,4 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado
 export const useTheme = () => useContext(ThemeContext);

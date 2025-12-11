@@ -1,11 +1,24 @@
-import React, { useEffect } from "react";
-import { useAuth } from "../../../hooks/useAuth";
+// react
+import { useEffect } from "react";
+
+// dependencias externas
 import { useNavigate } from "react-router-dom";
-import { sendEmailVerification } from "../../../services/auth.service.js";
-import { ICONS } from "../../../constants/icons";
-import "./ProfilePage.css";
+
+// hooks
+import { useAuth } from "../../../hooks/useAuth";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { sendEmailVerification } from "../../../services/auth.service.js";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./ProfilePage.css";
 
 function ProfilePage() {
   const { user, isAuthenticated, token } = useAuth();
@@ -13,7 +26,7 @@ function ProfilePage() {
   const navigate = useNavigate();
   const { showToast } = useUI();
 
-  // Si no está autenticado → redirigir
+  // Si no está autenticado → redirigir al login
   useEffect(() => {
     if (!isAuthenticated) {
       showToast({
@@ -42,9 +55,6 @@ function ProfilePage() {
     }
   };
 
-  // Si el usuario NO está verificado
-
-  // Si el usuario SÍ está verificado — mostrar datos
   return (
     <div className="profile-page">
       <header className="profile-page__header">

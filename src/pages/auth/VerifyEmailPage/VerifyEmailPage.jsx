@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from "react";
+// react
+import { useEffect, useState } from "react";
+
+// dependencias externas
 import { useNavigate, useParams } from "react-router-dom";
-import { verifyEmailConfirmation } from "../../../services/auth.service.js";
-import "./VerifyEmailPage.css";
-import { ICONS } from "../../../constants/icons";
-import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// hooks
 import { useAuth } from "../../../hooks/useAuth";
+import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// servicios
+import { verifyEmailConfirmation } from "../../../services/auth.service.js";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./VerifyEmailPage.css";
 
 function VerifyEmailPage() {
   usePageTitle("Bookly | Verificación de cuenta");

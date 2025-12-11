@@ -1,10 +1,23 @@
+// react
 import { useState } from "react";
-import { resetPasswordUser } from "../../../services/auth.service";
+
+// dependencias externas
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { ICONS } from "../../../constants/icons";
-import "./ResetPasswordPage.css";
+
+// hooks
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// servicios
+import { resetPasswordUser } from "../../../services/auth.service";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./ResetPasswordPage.css";
 
 export default function ResetPasswordPage() {
   usePageTitle("Bookly | Restablecer contraseña");

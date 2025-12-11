@@ -1,10 +1,21 @@
+// react
 import { useState } from "react";
+
+// dependencias externas
 import { useNavigate } from "react-router-dom";
-import { ICONS } from "../../../constants/icons";
-import "./AppointmentsPage.css";
+
+// hooks
 import { useAuth } from "../../../hooks/useAuth";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+
+// contextos
 import { useUI } from "../../../context/UIContext";
+
+// constantes
+import { ICONS } from "../../../constants/icons";
+
+// estilos
+import "./AppointmentsPage.css";
 
 function AppointmentsPage() {
   usePageTitle("Bookly | Consulta disponibilidad de turnos");

@@ -1,7 +1,8 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
-import "./HomePage.css";
+
 import { usePageTitle } from "../../hooks/usePageTitle";
+
+import "./HomePage.css";
 
 function HomePage() {
   usePageTitle("Bookly | Inicio");

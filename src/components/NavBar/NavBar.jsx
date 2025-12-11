@@ -1,10 +1,21 @@
-import { useNavigate, NavLink } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+// react
 import { useState } from "react";
+
+// dependencias externas
+import { useNavigate, NavLink } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import "./NavBar.css";
+
+// hooks
+import { useAuth } from "../../hooks/useAuth";
+
+// constantes
 import { ICONS } from "../../constants/icons";
+
+// componentes
 import ThemeToggleButton from "../ThemeToggleButton/ThemeToggleButton";
+
+// estilos
+import "./NavBar.css";
 
 export default function NavBar() {
   const { isAuthenticated, user, logout, token } = useAuth();
