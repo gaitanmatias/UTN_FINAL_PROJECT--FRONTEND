@@ -4,6 +4,7 @@ import { ICONS } from "../../../constants/icons";
 import "./AppointmentsPage.css";
 import { useAuth } from "../../../hooks/useAuth";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 function AppointmentsPage() {
   usePageTitle("Bookly | Consulta disponibilidad de turnos");
@@ -12,20 +13,30 @@ function AppointmentsPage() {
   const { token } = useAuth();
 
   const todayDate = new Date().toISOString().split("T")[0];
+  const { showToast } = useUI();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!token) {
-      alert("Debes iniciar sesión antes de continuar.");
+      showToast({ 
+        type: "error",
+        message: "Debes iniciar sesión antes de continuar."
+      });
       navigate("/auth/login");
       return;
     }
     if (!fecha) {
-      alert("Por favor, seleccioná una fecha antes de continuar.");
+      showToast({
+        type: "error",
+        message: "Por favor, seleccioná una fecha antes de continuar."
+      })
       return;
     }
     if (fecha < todayDate) {
-      alert("La fecha debe ser posterior a la fecha actual.");
+      showToast({
+        type: "error",
+        message: "La fecha debe ser posterior a la fecha actual."
+      })
       return;
     }
     navigate(`/appointments/available/${fecha}`);

@@ -4,10 +4,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./ForgotPasswordPage.css";
 import { ICONS } from "../../../constants/icons";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 export default function ForgotPasswordPage() {
   usePageTitle("Bookly | Olvidé mi contraseña");
   const navigate = useNavigate();
+  const { showToast } = useUI();
   
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -30,13 +32,19 @@ export default function ForgotPasswordPage() {
         email: formData.email,
       });
 
-      alert(response.message || "Correo de recuperación enviado correctamente");
+      showToast({
+        type: "success",
+        message: (response.message || "Correo de recuperación enviado correctamente")
+      })
       setFormData({
         email: "",
       });
 
     } catch (err) {
-      alert(err.message);
+      showToast({
+        type: "error",
+        message: err.message
+      })
     }
     finally {
       setLoading(false);

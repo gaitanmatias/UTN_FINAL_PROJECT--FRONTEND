@@ -6,11 +6,13 @@ import { jwtDecode } from "jwt-decode";
 import { ICONS } from "../../../constants/icons";
 import "./LoginPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 export default function LoginPage() {
   usePageTitle("Bookly | Iniciar sesión");
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { showToast } = useUI();
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -38,7 +40,10 @@ export default function LoginPage() {
         password: formData.password,
       });
 
-      alert(response.message || "¡Iniciaste sesión correctamente!");
+      showToast({
+        type: "success",
+        message: (response.message || "¡Iniciaste sesión correctamente!")
+      })
       setFormData({
         email: "",
         password: "",

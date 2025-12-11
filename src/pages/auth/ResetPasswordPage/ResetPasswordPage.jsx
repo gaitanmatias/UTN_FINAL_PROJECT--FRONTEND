@@ -4,11 +4,13 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { ICONS } from "../../../constants/icons";
 import "./ResetPasswordPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 export default function ResetPasswordPage() {
   usePageTitle("Bookly | Restablecer contraseña");
   const navigate = useNavigate();
   const { token } = useParams();
+  const { showToast } = useUI();
   
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,7 +30,10 @@ export default function ResetPasswordPage() {
 
     // Validacion de contraseñas idénticas
     if (formData.newPassword !== formData.confirmPassword) {
-      alert("Las contraseñas no coinciden");
+      showToast({
+        type: "error",
+        message: "Las contraseñas no coinciden"
+      })
       return;
     }
 
@@ -39,7 +44,10 @@ export default function ResetPasswordPage() {
         confirmPassword: formData.confirmPassword,
       });
 
-      alert(response.message || "Contraseña restablecida correctamente");
+      showToast({
+        type: "success",
+        message: (response.message || "Contraseña restablecida correctamente")
+      })
       setFormData({
         newPassword: "",
         confirmPassword: "",
@@ -47,7 +55,10 @@ export default function ResetPasswordPage() {
 
       navigate("/auth/login");
     } catch (err) {
-      alert(err.message);
+      showToast({
+        type: "error",
+        message: err.message
+      })
     }
     finally {
       setLoading(false);

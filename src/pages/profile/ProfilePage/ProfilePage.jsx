@@ -5,16 +5,21 @@ import { sendEmailVerification } from "../../../services/auth.service.js";
 import { ICONS } from "../../../constants/icons";
 import "./ProfilePage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 function ProfilePage() {
   const { user, isAuthenticated, token } = useAuth();
   usePageTitle(`Bookly | ${user.firstName} - Perfil`);
   const navigate = useNavigate();
+  const { showToast } = useUI();
 
   // Si no está autenticado → redirigir
   useEffect(() => {
     if (!isAuthenticated) {
-      alert("Debes iniciar sesión para acceder a tu perfil");
+      showToast({
+        type: "error",
+        message: "Debes iniciar sesión para acceder a tu perfil"
+      })
       navigate("/auth/login");
     }
   }, [isAuthenticated, navigate]);
@@ -24,9 +29,15 @@ function ProfilePage() {
   const handleSendVerification = async () => {
     try {
       await sendEmailVerification(token);
-      alert("Correo de verificación enviado. Revisa tu bandeja de entrada.");
+      showToast({
+        type: "success",
+        message: "Correo de verificación enviado. Revisa tu bandeja de entrada."
+      })
     } catch (error) {
-      alert("Ocurrió un error al enviar la verificación.");
+      showToast({
+        type: "error",
+        message: err.message || "Ocurrio un error al enviar la verificación."
+      })
       console.error(error);
     }
   };

@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { ICONS } from "../../constants/icons";
 import "./AdminDashboardPage.css";
 import { usePageTitle } from "../../hooks/usePageTitle";
+import { useUI } from "../../context/UIContext";
 
 export default function AdminDashboardPage() {
   usePageTitle("Bookly | Dashboard de Administrador");
@@ -12,6 +13,8 @@ export default function AdminDashboardPage() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
+
+  const { showToast, confirm } = useUI();
 
   useEffect(() => {
     const cargarTurnos = async () => {
@@ -29,24 +32,32 @@ export default function AdminDashboardPage() {
   }, [selectedDate, token]);
 
   const handleActualizarEstado = async (appointmentId, nuevoEstado) => {
-    const confirmMsg =
+    const ok = await confirm({
+    message:
       nuevoEstado === "completed"
-        ? "¿Está seguro que quiere marcar este turno como completado?"
-        : "¿Está seguro que quiere cancelar este turno?";
+        ? "¿Seguro que querés marcar este turno como completado?"
+        : "¿Seguro que querés cancelar este turno?",
+    });
 
-    if (!window.confirm(confirmMsg)) return;
+    if (!ok) return;
 
     try {
       await updateAppointment(appointmentId, nuevoEstado, token);
-      alert("Turno actualizado correctamente");
-
+      showToast({
+        type: "success",
+        message: "Turno actualizado correctamente"
+      });
+      
       setTurnos(prev =>
         prev.map(t =>
           t._id === appointmentId ? { ...t, status: nuevoEstado } : t
         )
       );
     } catch (err) {
-      alert(err.message);
+      showToast({
+        type: "error",
+        message: err.message
+      });
     }
   };
 

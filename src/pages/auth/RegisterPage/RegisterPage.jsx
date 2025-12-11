@@ -4,10 +4,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ICONS } from "../../../constants/icons";
 import "./RegisterPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 export default function RegisterPage() {
   usePageTitle("Bookly | Registro");
   const navigate = useNavigate();
+  const { showToast } = useUI();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -29,15 +31,24 @@ export default function RegisterPage() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Las contraseñas no coinciden");
+      showToast({
+        type: "error",
+        message: "Las contraseñas no coinciden"
+      })
       return;
     }
     if (formData.password.length < 8) {
-      alert("La contraseña debe tener al menos 8 caracteres");
+      showToast({
+        type: "error",
+        message: "La contraseña debe tener al menos 8 caracteres"
+      })
       return;
     }
     if (!formData.phoneNumber.match(/^\+\d{2}\d{10}$/)) {
-      alert("El número de teléfono debe tener el siguiente formato: +541122334455");
+      showToast({
+        type: "error",
+        message: "El número de teléfono debe tener el siguiente formato: +541122334455"
+      })
       return;
     }
 
@@ -50,7 +61,10 @@ export default function RegisterPage() {
         password: formData.password,
       });
 
-      alert(response.message || "Usuario registrado correctamente");
+      showToast({
+        type: "success",
+        message: (response.message || "Usuario registrado correctamente")
+      })
 
       setFormData({
         firstName: "",
@@ -63,7 +77,10 @@ export default function RegisterPage() {
 
       navigate("/auth/login");
     } catch (err) {
-      alert(err.message);
+      showToast({
+        type: "error",
+        message: err.message
+      })
     }
   };
 

@@ -5,6 +5,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
 import "./AvailableAppointmentsPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 function AvailableAppointmentsPage() {
   usePageTitle("Bookly | Reserva tu proximo turno");
@@ -14,7 +15,8 @@ function AvailableAppointmentsPage() {
   const [turnos, setTurnos] = useState({ scheduled: [], userCanceled: [] });
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
-
+  const { showToast } = useUI();
+  
   useEffect(() => {
     const cargarTurnos = async () => {
       try {
@@ -48,16 +50,25 @@ function AvailableAppointmentsPage() {
 
   const handleReservar = async (time) => {
     if (!jwtDecode(token).isVerified) {
-      alert("Debes verificar tu correo antes de reservar un turno.");
+      showToast({
+        type: "error",
+        message: "Debes verificar tu correo antes de reservar un turno."
+      })
       throw new Error("Debes verificar tu correo antes de reservar un turno.");
     }
 
     try {
       await createAppointment(date, time, token);
-      alert("¡Turno reservado correctamente!");
+      showToast({
+        type: "success",
+        message: "Turno reservado correctamente!"
+      })
       navigate(`/profile/${user.userId}/my-appointments`);
     } catch (err) {
-      alert(err.message);
+      showToast({
+        type: "error",
+        message: err.message
+      })
     }
   };
 

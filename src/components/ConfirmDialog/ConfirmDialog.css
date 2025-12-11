@@ -1,0 +1,80 @@
+.confirm-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 8vh;
+  z-index: 9999;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.confirm-dialog__container {
+  background: var(--card);
+  color: var(--card-foreground);
+  padding: 1.8rem;
+  border-radius: var(--radius);
+  width: 95%;
+  max-width: 500px;
+  animation: slideDown 0.22s ease-out;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.confirm-dialog__title {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: var(--foreground);
+}
+
+.confirm-dialog__message {
+  margin-bottom: 1.4rem;
+}
+
+.confirm-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.confirm-dialog__btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.confirm-dialog__btn--cancel {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+.confirm-dialog__btn--cancel:hover {
+  opacity: 0.85;
+}
+
+.confirm-dialog__btn--accept {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+.confirm-dialog__btn--accept:hover {
+  opacity: 0.9;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

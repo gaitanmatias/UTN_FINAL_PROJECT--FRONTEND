@@ -5,6 +5,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import { ICONS } from "../../../constants/icons";
 import "./MyAppointmentsPage.css";
 import { usePageTitle } from "../../../hooks/usePageTitle";
+import { useUI } from "../../../context/UIContext";
 
 function MyAppointmentsPage() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function MyAppointmentsPage() {
   const [turnos, setTurnos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState("");
+  const { showToast, confirm } = useUI();
 
   const { user } = useAuth();
   usePageTitle(`Bookly | ${user.firstName} - Mis turnos`);
@@ -36,21 +38,34 @@ function MyAppointmentsPage() {
     const id = appointment._id;
 
     if (!id) {
-      alert("ID de turno no encontrado.");
+      showToast({
+        type: "error",
+        message: "ID de turno no encontrado."
+      })
       return;
     }
 
-    if (!confirm("¿Seguro que deseas cancelar este turno?")) return;
+    const ok = await confirm({
+    message: "¿Seguro que deseas cancelar este turno?"
+    });
+
+    if (!ok) return;
 
     try {
       await updateAppointment(id, "canceled", token);
-      alert("Turno cancelado correctamente.");
+      showToast({
+        type: "success",
+        message: "Turno cancelado correctamente."
+      })
 
       setTurnos((prev) =>
         prev.map((t) => (t._id === id ? { ...t, status: "canceled" } : t))
       );
     } catch (err) {
-      alert(err.message);
+      showToast({
+        type: "error",
+        message: err.message
+      })
     }
   };
 
