@@ -16,7 +16,7 @@ export default function NotFoundPage() {
       {/* Topbar: logo + (tema + hamburguesa) */}
       <div className="navbar__topbar">
         <div className="navbar__brand" onClick={() => navigate("/")}>
-          <h1 className="navbar__logo">Bookly</h1>
+          <span className="navbar__logo">Bookly</span>
         </div>
         </div>
       </nav>
