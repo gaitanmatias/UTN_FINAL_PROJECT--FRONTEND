@@ -191,7 +191,7 @@
   .navbar {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     height: 90px;
     padding: 0 1.5%;
 
@@ -210,14 +210,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 20px;
 
     position: static;
 
     height: 100%;
     width: 100%;
-    padding: 0;
-    margin-left: 2.5%;
+    max-width: 1700px;
+    padding: 0 0 0 20px;
   }
   
   .navbar__link {
@@ -242,7 +243,7 @@
 
   .navbar__list {
     flex-direction: row;
-    gap: 0.75%;
+    gap: 10px;
   }
 
   .navbar__auth {
