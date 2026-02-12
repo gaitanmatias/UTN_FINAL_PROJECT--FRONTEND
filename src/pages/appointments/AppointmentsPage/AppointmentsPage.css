@@ -21,7 +21,9 @@
   align-items: center;
   gap: 50px;
 
-  height: calc(100dvh - 75px);
+  width: 100%;
+  height: calc(100dvh - 90px);
+  min-height: fit-content;
 }
 
 .appointments-page__header {
@@ -29,7 +31,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
   gap: 10px;
 
   width: 75%;
@@ -52,11 +53,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 20px;
   flex-wrap: wrap;
 
+  width: fit-content;
   padding: 20px;
+
   background-color: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -69,22 +71,158 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
+
+  width: 100%;
 }
 
-.appointments-page__date-input {
-  padding: 8px 12px;
+/* --- CALENDARIO --- */
+.appointments-page__calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 350px;
+  min-height: fit-content;
+  height: 367px;
+
+  background-color: var(--background);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background-color: var(--input);
+  border-radius: 7px;
+  overflow: hidden;
+
   color: var(--primary);
-  font-size: 1.25em;
-  cursor: pointer;
 }
 
-.appointments-page__date-input:hover,
-.appointments-page__date-input:focus {
-  border-color: var(--accent);
-  outline: none;
+/* --- headers --- */
+.appointments-page__calendar .react-calendar__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  background-color: var(--accent);
+}
+
+.appointments-page__calendar .react-calendar__navigation button {
+  padding: 12px 16px;
+
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1em;
+  color: var(--primary-foreground);
+}
+
+.appointments-page__calendar .react-calendar__navigation button:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--accent) 70%,
+    var(--accent-foreground) 30%
+  );
+}
+
+.appointments-page__calendar .react-calendar__navigation button:disabled {
+  cursor: default;
+}
+
+.appointments-page__calendar .react-calendar__navigation button:disabled:hover {
+  background-color: var(--accent);
+}
+
+/* --- info calendario --- */
+.react-calendar__viewContainer,
+.react-calendar__month-view > div,
+.react-calendar__month-view > div > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* dias de la semana */
+.react-calendar__month-view__weekdays {
+  width: 100%;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px;
+
+  color: color-mix(in srgb, var(--medium) 50%, var(--primary));
+}
+
+/* dias del mes */
+.react-calendar__month-view__days {
+  max-width: 350px;
+  height: 100%;
+
+  border-top: 1px solid var(--border);
+}
+
+.react-calendar__tile,
+.react-calendar__month-view__days__day {
+  height: 45px;
+
+  font-size: 0.9em;
+  color: var(--primary);
+}
+
+.react-calendar__month-view__days__day:disabled {
+  background-color: color-mix(in srgb, var(--medium) 10%, transparent);
+
+  color: color-mix(in srgb, var(--medium) 70%, var(--primary));
+
+  cursor: default;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--destructive);
+}
+
+.react-calendar__month-view__days__day--neighboringMonth,
+.react-calendar__month-view__days__day--weekend
+  .react-calendar__month-view__days__day--neighboringMonth {
+  color: color-mix(in srgb, var(--medium) 10%, var(--primary) 10%);
+}
+
+.react-calendar__tile--now {
+  background-color: color-mix(
+    in srgb,
+    var(--accent) 20%,
+    var(--accent-foreground) 10%
+  );
+}
+
+.react-calendar__month-view__days__day:hover:not(:disabled) {
+  background-color: color-mix(
+    in srgb,
+    var(--accent) 60%,
+    var(--accent-foreground) 20%
+  );
+
+  color: var(--light);
+  font-weight: 600;
+}
+
+.react-calendar__tile--rangeStart,
+.react-calendar__tile--rangeEnd,
+.react-calendar__tile--rangeBothEnds {
+  background-color: var(--accent);
+
+  color: var(--light);
+  font-weight: 600;
+
+  transition: all 0.25s ease;
 }
 
 .appointments-page__form-button {
@@ -99,9 +237,8 @@
   font-weight: 700;
   text-decoration: none;
   color: var(--primary-foreground);
-  background-color: var(--accent);
 
-  transition: all 0.3s ease;
+  background-color: var(--accent);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -112,7 +249,7 @@
   margin: 50px 0;
   height: 2px;
   border: none;
-  background-color: var(--border)
+  background-color: var(--border);
 }
 
 .appointments-page__info {
@@ -137,7 +274,7 @@
 
   background-color: var(--accent);
   border-radius: var(--radius);
-  
+
   color: var(--primary-foreground);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -165,9 +302,8 @@
     max-width: 650px;
     gap: 25px;
   }
-  
+
   .appointments-page__subtitle {
     text-align: center;
   }
-  
 }
