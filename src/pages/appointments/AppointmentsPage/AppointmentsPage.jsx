@@ -3,7 +3,6 @@ import { useState } from "react";
 
 // dependencias externas
 import { useNavigate } from "react-router-dom";
-import Calendar from "react-calendar";
 
 // hooks
 import { useAuth } from "../../../hooks/useAuth";
@@ -15,25 +14,26 @@ import { useUI } from "../../../context/UIContext";
 // constantes
 import { ICONS } from "../../../constants/icons";
 
+// componentes
+import CalendarBase from "../../../components/DateSelection/CalendarBase";
+
 // estilos
 import "./AppointmentsPage.css";
 
 function AppointmentsPage() {
   usePageTitle("Bookly | Consulta disponibilidad de turnos");
+
   const navigate = useNavigate();
   const { token } = useAuth();
+  const { showToast } = useUI();
 
   const [fecha, setFecha] = useState(null);
+
   const todayDate = new Date();
-  const maxDate = new Date(
-    todayDate.getFullYear(),
-    todayDate.getMonth() + 6,
-    todayDate.getDate(),
-  );
-  const { showToast } = useUI();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!token) {
       showToast({
         type: "error",
@@ -42,6 +42,7 @@ function AppointmentsPage() {
       navigate("/auth/login");
       return;
     }
+
     if (!fecha) {
       showToast({
         type: "error",
@@ -49,6 +50,7 @@ function AppointmentsPage() {
       });
       return;
     }
+
     if (fecha < todayDate) {
       showToast({
         type: "error",
@@ -56,6 +58,7 @@ function AppointmentsPage() {
       });
       return;
     }
+
     if (fecha > todayDate.setMonth(todayDate.getMonth() + 6)) {
       showToast({
         type: "error",
@@ -64,11 +67,8 @@ function AppointmentsPage() {
       });
       return;
     }
-    navigate(`/appointments/available/${fecha.toISOString().split("T")[0]}`);
-  };
 
-  const handleFechaChange = (date) => {
-    setFecha(date);
+    navigate(`/appointments/available/${fecha.toISOString().split("T")[0]}`);
   };
 
   return (
@@ -80,25 +80,14 @@ function AppointmentsPage() {
           </h2>
           <p className="appointments-page__subtitle">
             Seleccioná la fecha que te quede más cómoda y descubrí los horarios
-            disponibles en los que podrás reservar tu turno. Actualizamos la
-            disponibilidad constantemente, así que siempre vas a ver los turnos
-            más recientes.
+            disponibles en los que podrás reservar tu turno.
           </p>
         </div>
 
-        {/* Selector de fecha */}
         <section className="appointments-page__filters">
           <form onSubmit={handleSubmit} className="appointments-page__form">
-            <Calendar
-              value={fecha}
-              onChange={handleFechaChange}
-              className="appointments-page__calendar"
-              prev2Label={null}
-              next2Label={null}
-              minDetail="month"
-              minDate={new Date()}
-              maxDate={maxDate}
-            />
+            <CalendarBase onDateChange={setFecha} />
+
             <button type="submit" className="appointments-page__form-button">
               Ver turnos disponibles
             </button>
@@ -110,21 +99,21 @@ function AppointmentsPage() {
 
       <section className="appointments-page__info">
         <div className="appointments-page__reminder">
-          <i className="appointments-page__reminder-icon">{ICONS.calendar}</i>
+          <i className="appointments-page__reminder-icon">
+            {ICONS.calendar}
+          </i>
           <p className="appointments-page__reminder-text">
             Recordá que podés reservar turnos con hasta{" "}
-            <strong>6 meses de anticipación</strong>. Si no hay disponibilidad
-            para la fecha seleccionada, probá con otro día o volvé a consultar
-            más adelante.
+            <strong>6 meses de anticipación</strong>.
           </p>
         </div>
+
         <div className="appointments-page__reminder">
           <i className="appointments-page__reminder-icon">
             {ICONS.checkSuccess}
           </i>
           <p className="appointments-page__reminder-text">
-            Una vez que elijas la fecha, te mostraremos los horarios disponibles
-            para que puedas confirmar tu turno fácilmente.
+            Una vez que elijas la fecha, te mostraremos los horarios disponibles.
           </p>
         </div>
       </section>
