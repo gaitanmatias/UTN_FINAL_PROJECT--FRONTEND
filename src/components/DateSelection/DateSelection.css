@@ -1,4 +1,4 @@
-/* --- CALENDARIO --- */
+/* ===== CALENDARIO ===== */
 .react-calendar {
   display: flex;
   flex-direction: column;
@@ -146,4 +146,45 @@
   font-weight: 600;
 
   transition: all 0.25s ease;
+}
+
+/* ===== DATEPICKER ===== */
+.date-picker {
+  display: inline-block;
+
+  position: relative;
+
+  width: 100%;
+}
+
+.date-picker__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  font-size: 2.5em;
+  font-weight: 900;
+  color: var(--accent);
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+
+  border-bottom: 2px solid var(--accent);
+}
+
+.date-picker__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.75em;
+  color: var(--foreground);
+}
+
+.date-picker .react-calendar {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0px;
+
+  box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.3);
 }

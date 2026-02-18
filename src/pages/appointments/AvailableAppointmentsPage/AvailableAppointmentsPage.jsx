@@ -15,6 +15,9 @@ import { useUI } from "../../../context/UIContext";
 // servicios
 import { getAppointmentsByDate, createAppointment } from "../../../services/appointment.service";
 
+// componentes
+import DatePicker from "../../../components/DateSelection/DatePicker";
+
 // estilos
 import "./AvailableAppointmentsPage.css";
 
@@ -97,12 +100,46 @@ function AvailableAppointmentsPage() {
   const horariosOcupados = turnos.scheduled.map((t) => t.time);
   const horariosCancelados = turnos.userCanceled.map((t) => t.time);
 
+  // Helpers para el calendario 
+  const formatDateForURL = (dateObj) => {
+    const year = dateObj.getFullYear();
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+    const day = dateObj.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+  
+  const handleDateChange = (newDate) => {
+    const today = new Date();
+    const maxDate = new Date(
+      today.getFullYear(),
+      today.getMonth() + 6,
+      today.getDate()
+    );
+  
+    if (newDate < today || newDate > maxDate) {
+      showToast({
+        type: "error",
+        message: "La fecha seleccionada no es válida."
+      });
+      return;
+    }
+  
+    const formatted = formatDateForURL(newDate);
+  
+    if (formatted !== date) {
+      navigate(`/appointments/available/${formatted}`);
+    }
+  };
+
   return (
   <div className="available-appointments-page">
     <div className="available-appointments-page__header">
-      <h2 className="available-appointments-page__title">
-        Turnos disponibles para el : <span className="available-appointments-page__title-date">{date}</span>
-      </h2>
+      <h2 className="available-appointments-page__title">Turnos disponibles para el :</h2>
+      <DatePicker 
+        className="available-appointments-page__title-date"
+        value={date}
+        onDateChange={handleDateChange}
+      />
       <p className="available-appointments-page__subtitle">
         Seleccioná el horario que mejor se adapte a tu disponibilidad.  
         Los turnos se actualizan constantemente, así que si no ves disponibilidad, probá más tarde.
