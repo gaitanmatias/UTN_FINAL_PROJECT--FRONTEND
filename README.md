@@ -1,23 +1,37 @@
-# Frontend – Documentación del Proyecto
+# Bookly | Sistema de Reserva de Turnos
 
-> **Nombre del proyecto:** "*Bookly | Sistema de Reserva de Turnos*"
->
-> **Tecnologías principales:** React - Vite - React Router DOM - Axios
+Frontend de aplicación full stack desarrollada con React + Vite.
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Deploy](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+---
+
+## 🌍 Enlaces del Proyecto
+
+- 🚀 [Aplicación en Producción](https://gaitanmatias-bookly.vercel.app/)
+- ⚙️ [Repositorio Backend](https://github.com/gaitanmatias/UTN_FINAL_PROJECT--BACKEND)
 
 ---
 
 ## 📌 Descripción del Proyecto
 
-Este es el frontend de la aplicación desarrollada como parte del proyecto final UTN. Está construido con **React + Vite**, siguiendo una arquitectura modular basada en páginas, componentes reutilizables, contextos globales y hooks personalizados. La interfaz permite al usuario:
+Este es el frontend de la aplicación desarrollada como parte del
+proyecto final UTN. Está construido con **React + Vite**, siguiendo una
+arquitectura modular basada en páginas, componentes reutilizables,
+contextos globales y hooks personalizados.
 
-* Registrarse e iniciar sesión.
-* Verificar su cuenta por email.
-* Solicitar y reservar turnos disponibles.
-* Administrar sus turnos futuros y pasados.
-* Editar información de perfil.
-* Recuperar contraseña.
+La interfaz permite al usuario:
 
-El frontend se comunica con el backend mediante **servicios Axios** que manejan autenticación, turnos y verificación.
+-   Registrarse e iniciar sesión.
+-   Verificar su cuenta por email.
+-   Seleccionar fechas mediante un **calendario interactivo dinámico**.
+-   Visualizar turnos disponibles por día.
+-   Reservar turnos en tiempo real.
+-   Administrar turnos futuros y pasados.
+-   Recuperar contraseña.
+
+El frontend se comunica con el backend mediante **servicios Axios** que
+manejan autenticación, turnos y verificación.
 
 ---
 
@@ -44,6 +58,8 @@ FRONTEND/
     ├── components/           # Componentes reutilizables
     │   ├── NavBar/
     │   ├── ThemeToggleButton/
+    │   ├── ConfirmDialog/
+    │   ├── DateSelection/
     │   └── Footer/
     │
     ├── constants/            # Constantes globales (iconos, rutas)
@@ -52,6 +68,7 @@ FRONTEND/
     │
     ├── context/              # Contextos globales
     │   ├── AuthContext.jsx
+    │   ├── UIContext.jsx
     │   └── ThemeContext.jsx
     │
     ├── hooks/                # Hooks personalizados
@@ -64,6 +81,7 @@ FRONTEND/
     ├── pages/                # Páginas de la aplicación
     │   ├── home/
     │   ├── auth/
+    │   ├── admin/
     │   ├── appointments/
     │   ├── profile/
     │   └── NotFoundPage/
@@ -86,54 +104,38 @@ FRONTEND/
 
 ## 🚀 Instalación y Puesta en Marcha
 
-### 1️⃣ **Clonar el repositorio**
+### 1️⃣ Clonar el repositorio
 
-```
-git clone <url-del-repo-frontend>
-cd frontend
-```
+    git clone https://github.com/gaitanmatias/UTN_FINAL_PROJECT--FRONTEND
+    cd frontend
 
-### 2️⃣ **Instalar dependencias**
+### 2️⃣ Instalar dependencias
 
-```
-npm install
-```
+    npm install
 
-### 3️⃣ **Configurar variables de entorno**
+### 3️⃣ Configurar variables de entorno
 
 Crear un archivo `.env` basado en `.env.example`.
 
-Variables típicas:
+    VITE_API_URL=http://localhost:8080/
 
-```
-VITE_API_URL=http://localhost:8080/
-```
+Cambiar según el backend en producción.
 
-Cambiar según el backend en producción (por ejemplo, el deploy en Vercel).
+### 4️⃣ Ejecutar en modo desarrollo
 
-### 4️⃣ **Ejecutar en modo desarrollo**
-
-```
-npm run dev
-```
+    npm run dev
 
 La aplicación se abrirá en:
 
-```
-http://localhost:5173
-```
+    http://localhost:5173
 
-### 5️⃣ **Build para producción**
+### 5️⃣ Build para producción
 
-```
-npm run build
-```
+    npm run build
 
-### 6️⃣ **Vista previa del build**
+### 6️⃣ Vista previa del build
 
-```
-npm run preview
-```
+    npm run preview
 
 ---
 
@@ -144,9 +146,10 @@ Estas dependencias están definidas en el `package.json`:
 | Librería             | Versión | Uso                                 |
 | -------------------- | ------- | ----------------------------------- |
 | **react**            | ^19.1.1 | UI principal                        |
-| **react-router-dom** | ^7.9.3  | Sistema de rutas                    |
+| **react-router-dom** | ^19.1.1 | Sistema de rutas                    |
 | **axios**            | ^1.13.2 | Requests HTTP                       |
 | **react-icons**      | ^5.5.0  | Iconografía                         |
+| **react-calendar**   | ^6.0.0  | Calendario interactivo              |
 | **jwt-decode**       | ^4.0.0  | Decodificación de JWT en el cliente |
 
 ---
@@ -169,18 +172,17 @@ El archivo `AppRouter.jsx` administra todas las rutas:
 ### `/profile`
 * `/profile/:userId` → Perfil del usuario
 * `/profile/:userId/my-appointments` → Mis turnos
-* `*` → Página 404
+
+`*` → Página 404 (NotFoundPage)
 
 ---
 
 ## 🔒 Autenticación y Manejo de Sesión
 
-El frontend implementa:
-
-* **Contexto de autenticación (`AuthContext`)**: maneja estado global del usuario.
-* **Persistencia del token en localStorage**.
-* **Manejo de expiración de la sesión** mediante `sessionHandler.js`.
-* **Protección de rutas** desde `AppRouter.jsx`.
+- **Contexto de autenticación (`AuthContext`)**: maneja estado global del usuario.
+- **Persistencia del token en localStorage**.
+- **Manejo de expiración de la sesión** mediante `sessionHandler.js`.
+- **Protección de rutas** desde `AppRouter.jsx`.
 
 ---
 
@@ -196,10 +198,9 @@ El frontend implementa:
 
 ## 🎨 Estilos y Temas
 
-* Proyecto basado en **CSS modular por componentes/páginas**.
-* Variables y estilos globales en `styles/base.css`.
-* Tema claro/oscuro controlado por `ThemeContext`.
-* Botón tipo switch de tema: `ThemeToggleButton`.
+-   CSS modular por componentes y páginas.
+-   Variables globales en `base.css`.
+-   Soporte de tema claro/oscuro mediante `ThemeContext`.
 
 ---
 
@@ -209,18 +210,18 @@ Los servicios Axios encapsulan las peticiones:
 
 ### `auth.service.js`
 
-* Login
-* Register
-* Forgot password
-* Reset password
-* Verify email
-* Refresh de sesión (si aplica)
+- Login
+- Register
+- Forgot password
+- Reset password
+- Verify email
+- Refresh de sesión (si aplica)
 
 ### `appointments.service.js`
 
-* Obtener turnos disponibles
-* Reservar turno
-* Listar turnos del usuario
+- Obtener turnos disponibles
+- Reservar turno
+- Listar turnos del usuario
 
 ---
 
@@ -232,27 +233,16 @@ Se incluye una colección de Postman (en el repositorio del backend) para facili
 
 ## 📦 Deploy
 
-El frontend está desplegado con **Vercel**, utilizando:
+Frontend desplegado en **Vercel**.
 
-* `npm run build`
-* Adaptación automática de Vite
+Requiere variable de entorno en producción:
 
-El entorno de producción debe incluir:
-
-```
-VITE_API_URL=<URL_DE_TU_BACKEND_DEPLOYADO>
-```
-
----
-
-## 📜 Licencia
-
-Proyecto desarrollado para fines académicos (UTN). Uso libre para revisión.
+    VITE_API_URL=<URL_BACKEND_PRODUCCION>
 
 ---
 
 ## 👤 Autor
 
-Matías Gaitán.
+Gaitán Matías - Desarrollador Full Stack.
 
 
